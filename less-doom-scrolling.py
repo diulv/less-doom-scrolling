@@ -1,13 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options
 import netrc
 import time
 
 creds = netrc.netrc()
-
 login, username, password = creds.authenticators("twitter")
 
-browser = webdriver.Firefox()
+options = Options()
+options.add_argument("--headless")
+
+browser = webdriver.Firefox(options=options)
 browser.get("https://www.twitter.com/login")
 time.sleep(5)
 
